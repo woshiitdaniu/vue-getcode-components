@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>WiseChia-master</title>
+		<style type="text/css">
+			/** { touch-action: none; }*/
+		</style>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link href="src/assets/iconfont/iconfont.css"/>
+		<script src="https://sinacloud.net/vue-wechat/js/qrcode.min.js">			
+		</script>
+	</head>
+
+	<body>
+		<div id="app"></div>
+		<script src="static/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			mui.init({  
+						swipeBack: false, //关闭右滑关闭功能（默认就是false）    
+						keyEventBind: {backbutton: true //开启back按键监听（默认就是true）  
+					 }}); 
+					 var quitTime = null; 
+					 mui.plusReady(function(){    
+					 	mui.back = function(){      //首次按键，提示‘再按一次退出应用’      
+					 		if (!quitTime) {        //记录第一次按下回退键的时间      
+					 			  quitTime = new Date().getTime();        //回退到上一页面      
+					 			  window.history.go(-1);       
+					 			setTimeout(function() {          //1s中后清除      
+					 				    quitTime = null;       
+					 			}, 1000);      
+					 		}else{      
+					 			  if((new Date().getTime() - quitTime) < 1000){         
+					 				quitTime = null;          
+					 				plus.runtime.quit();       
+					 			}      
+					 		}    
+					 	};  
+					 });
+		</script>
+
+	</body>
+
+</html>
